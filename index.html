@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nguyễn Phương Linh | Digital Portfolio</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Google Fonts hỗ trợ tiếng Việt tuyệt hảo -->
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -32,12 +32,12 @@
         }
 
         body {
-            background-image: linear-gradient(rgba(11, 17, 32, 0.9), rgba(11, 17, 32, 0.9)), url('back.jpg');
+            background-image: linear-gradient(rgba(11, 17, 32, 0.92), rgba(11, 17, 32, 0.92)), url('back.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
             color: var(--text-main);
-            font-family: 'Be Vietnam Pro', sans-serif;
+            font-family: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             overflow-x: hidden;
             line-height: 1.8;
         }
@@ -61,7 +61,7 @@
             background: var(--bg-color);
         }
         ::-webkit-scrollbar-thumb {
-            background: rgba(129, 140, 248, 0.2);
+            background: rgba(129, 140, 248, 0.25);
             border-radius: 3px;
         }
         ::-webkit-scrollbar-thumb:hover {
@@ -462,13 +462,73 @@
             font-weight: 300;
         }
 
-        /* Task 1 Interactive Stepper */
+        /* Task 1 Interactive File Tree and Stepper */
+        .task1-container {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .file-tree-card {
+            background: rgba(11, 17, 32, 0.6);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 2rem;
+        }
+
+        .file-tree-card h4 {
+            font-size: 1rem;
+            color: var(--cosmic-blue);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .tree-node {
+            margin-left: 1.5rem;
+            position: relative;
+            font-family: monospace;
+            font-size: 0.9rem;
+            line-height: 2;
+        }
+
+        .tree-node i {
+            margin-right: 6px;
+        }
+
+        .tree-root {
+            margin-left: 0;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .tree-folder {
+            color: #f59e0b;
+        }
+
+        .tree-file {
+            color: var(--text-muted);
+        }
+
+        .tree-node::before {
+            content: '';
+            position: absolute;
+            left: -12px;
+            top: 0;
+            bottom: 10px;
+            width: 1px;
+            border-left: 1px dashed rgba(255, 255, 255, 0.15);
+        }
+
         .stepper-container {
             background: rgba(11, 17, 32, 0.5);
             border: 1px solid var(--card-border);
             border-radius: 20px;
             padding: 2.5rem;
-            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .stepper-header {
@@ -550,7 +610,7 @@
 
         th {
             background: rgba(15, 23, 42, 0.8);
-            padding: 1rem 1.5rem;
+            padding: 1.2rem 1.5rem;
             color: var(--cosmic-blue);
             font-weight: 600;
             text-transform: uppercase;
@@ -559,14 +619,21 @@
         }
 
         td {
-            padding: 1rem 1.5rem;
+            padding: 1.2rem 1.5rem;
             border-bottom: 1px solid var(--card-border);
             color: var(--text-muted);
+            vertical-align: top;
         }
 
         tr:hover td {
             background: rgba(255,255,255,0.01);
             color: #fff;
+        }
+
+        .td-summary {
+            font-size: 0.8rem;
+            max-width: 250px;
+            line-height: 1.5;
         }
 
         .rating-star {
@@ -576,19 +643,22 @@
         .btn-table-link {
             color: var(--cosmic-blue);
             text-decoration: none;
+            word-break: break-all;
+            font-size: 0.8rem;
         }
 
         .btn-table-link:hover {
             text-decoration: underline;
         }
 
-        /* Task 3 Interactive Compare Tabs */
+        /* Task 3 Interactive Compare Tabs & Chat Sim */
         .prompt-tabs {
             display: flex;
             gap: 1rem;
             margin-top: 2rem;
             border-bottom: 1px solid var(--card-border);
             padding-bottom: 1rem;
+            overflow-x: auto;
         }
 
         .tab-trigger {
@@ -599,6 +669,7 @@
             padding: 0.5rem 1rem;
             cursor: pointer;
             transition: all 0.2s;
+            white-space: nowrap;
         }
 
         .tab-trigger.active {
@@ -677,39 +748,85 @@
             color: var(--cosmic-blue);
         }
 
-        /* Task 4 Interactive Cycle */
-        .collaboration-map {
+        /* Task 4 Process Timeline */
+        .task4-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin-top: 2rem;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 3rem;
+            margin-top: 2.5rem;
+        }
+
+        .collaboration-map {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
         }
 
         .tool-node {
             background: rgba(11, 17, 32, 0.5);
             border: 1px solid var(--card-border);
             border-radius: 20px;
-            padding: 2rem;
-            text-align: center;
+            padding: 1.8rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .tool-node:hover {
+            border-color: rgba(129, 140, 248, 0.2);
+            transform: translateX(5px);
         }
 
         .tool-node i {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             color: var(--cosmic-blue);
-            margin-bottom: 1rem;
+            margin-top: 0.2rem;
         }
 
         .tool-node h5 {
             font-size: 1.15rem;
-            margin-bottom: 0.8rem;
+            margin-bottom: 0.5rem;
         }
 
         .tool-node p {
             color: var(--text-muted);
             font-size: 0.9rem;
+            font-weight: 300;
         }
 
-        /* Task 5 Timeline */
+        .collaboration-details {
+            background: rgba(15, 23, 42, 0.4);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 2rem;
+        }
+
+        .collaboration-details h4 {
+            font-size: 1.1rem;
+            color: var(--cosmic-purple);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .collab-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+
+        .collab-table th {
+            padding: 0.6rem;
+            font-size: 0.75rem;
+        }
+
+        .collab-table td {
+            padding: 0.8rem 0.6rem;
+            border-bottom: 1px dashed rgba(255,255,255,0.05);
+        }
+
+        /* Task 5 Timeline & Detail Workflow */
         .pipeline-flow {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -744,6 +861,43 @@
         .pipeline-card p {
             font-size: 0.85rem;
             color: var(--text-muted);
+        }
+
+        .deep-case-study {
+            background: rgba(11, 17, 32, 0.4);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-top: 2rem;
+        }
+
+        .deep-case-study h4 {
+            font-size: 1.15rem;
+            color: #fff;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-left: 3px solid var(--cosmic-purple);
+            padding-left: 10px;
+        }
+
+        .study-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .study-box h5 {
+            font-size: 1rem;
+            color: var(--cosmic-blue);
+            margin-bottom: 0.8rem;
+        }
+
+        .study-box p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            font-weight: 300;
         }
 
         /* Task 6 Code of Conduct Grid */
@@ -945,7 +1099,7 @@
                 grid-template-columns: 1fr;
             }
 
-            .task-grid-summary, .compare-grid, .collaboration-map, .pipeline-flow, .principles-grid {
+            .task1-container, .task-grid-summary, .compare-grid, .task4-grid, .pipeline-flow, .study-grid, .principles-grid {
                 grid-template-columns: 1fr;
                 gap: 1.5rem;
             }
@@ -1014,7 +1168,7 @@
                 <span class="badge">E-Portfolio Dự Án Cá Nhân</span>
                 <h1>Nguyễn Phương Linh</h1>
                 <p class="hero-desc">
-                    Mình là Phương Linh, sinh viên năm nhất ngành Ngôn ngữ và Văn hoá Trung Quốc tại Đại học Ngoại ngữ - ĐHQGHN. Đây là không gian lưu trữ hành trình số hóa của bản thân, nơi giao thoa giữa vẻ đẹp cổ kính của ngôn ngữ Á Đông và tính nhạy bén, đột phá của Trí tuệ nhân tạo.
+                    Chào mừng bạn đến với góc nhỏ của mình! Mình là Nguyễn Phương Linh, hiện là sinh viên chuyên ngành Ngôn ngữ và Văn hoá Trung Quốc tại Đại học Ngoại ngữ - ĐHQGHN. Trang portfolio này là nơi lưu giữ tất cả các sản phẩm số, nhật ký nghiên cứu, và nỗ lực rèn luyện của mình trong hành trình khám phá thế giới số hóa đầy kỳ diệu.
                 </p>
                 <div class="hero-meta">
                     <div class="meta-item">
@@ -1026,12 +1180,12 @@
                         <span class="meta-value">Ngôn ngữ Trung Quốc - ULIS</span>
                     </div>
                     <div class="meta-item">
-                        <span class="meta-label">Học phần học tập</span>
+                        <span class="meta-label">Học phần thực hiện</span>
                         <span class="meta-value">Nhập môn công nghệ số & AI</span>
                     </div>
                     <div class="meta-item">
-                        <span class="meta-label">Trực thuộc đơn vị</span>
-                        <span class="meta-value">Trường Đại học Ngoại ngữ - ĐHQGHN</span>
+                        <span class="meta-label">Trường đại học</span>
+                        <span class="meta-value">Đại học Ngoại ngữ - ĐHQGHN</span>
                     </div>
                 </div>
             </div>
@@ -1043,23 +1197,23 @@
         <div class="container">
             <div class="section-title">
                 <h2>Mục Tiêu Portfolio</h2>
-                <p>Vì sao không gian số này được ra đời? Portfolio này không chỉ là một bài nộp, mà còn là một cam kết tiến bộ lâu dài.</p>
+                <p>Một không gian số chuyên nghiệp dùng để kết nối, học hỏi và thể hiện các thành tích thực tế một cách nghiêm túc.</p>
             </div>
             <div class="goals-grid">
                 <div class="goal-card">
                     <div class="goal-icon"><i class="fa-solid fa-cubes"></i></div>
                     <h3>Hệ Thống Hóa Kiến Thức</h3>
-                    <p>Tổng hợp, tinh lọc và hệ thống hóa toàn bộ chuỗi tri thức, kỹ năng thực hành số đã gặt hái được xuyên suốt học phần Nhập môn Công nghệ số và AI.</p>
+                    <p>Đúc kết toàn bộ chuỗi tri thức, kỹ năng công nghệ thực tiễn đã tiếp thu được qua học phần. Nhìn lại hành trình tự học và nghiên cứu khoa học có hệ thống.</p>
                 </div>
                 <div class="goal-card">
                     <div class="goal-icon"><i class="fa-solid fa-chart-line"></i></div>
-                    <h3>Minh Chứng Năng Lực Số</h3>
-                    <p>Khẳng định khả năng tự học, làm chủ các hệ thống AI tạo sinh (văn bản, hình ảnh, thiết kế slide) kết hợp với các kỹ năng quản trị tệp tin và cộng tác nhóm trực tuyến.</p>
+                    <h3>Chứng Minh Năng Lực Số</h3>
+                    <p>Khẳng định năng lực cá nhân trong việc ứng dụng các mô hình AI tạo sinh, kỹ năng cộng tác từ xa và giải quyết vấn đề bằng công cụ kỹ thuật số hiện đại.</p>
                 </div>
                 <div class="goal-card">
                     <div class="goal-icon"><i class="fa-solid fa-compass"></i></div>
-                    <h3>Kiến Tạo Bản Thân Tương Lai</h3>
-                    <p>Xây dựng một bộ hồ sơ số cá nhân hoàn chỉnh, tạo tiền đề vững chắc cho việc nghiên cứu khoa học, xin học bổng và thăng tiến nghề nghiệp trong tương lai.</p>
+                    <h3>Hồ Sơ Sáng Tạo Tương Lai</h3>
+                    <p>Kiến tạo một cuốn nhật ký năng lực mở, sẵn sàng làm bệ phóng vững chắc cho các cơ hội thực tập, xin học bổng và phát triển nghiên cứu học thuật cao hơn.</p>
                 </div>
             </div>
         </div>
@@ -1069,14 +1223,14 @@
     <section class="projects-section" id="projects">
         <div class="container">
             <div class="section-title">
-                <h2>Kho Sản Phẩm Thực Hành</h2>
-                <p>Khám phá 6 bài tập lớn mô tả tường tận từng bước kỹ thuật, mang đậm dấu ấn cá nhân và nỗ lực bền bỉ.</p>
+                <h2>Sản Phẩm Đạt Được</h2>
+                <p>Khám phá 6 nhiệm vụ thực hành chuyên sâu phản chiếu quá trình làm việc độc lập và kỹ năng sáng tạo có trách nhiệm.</p>
             </div>
 
             <!-- Drive Callout in Middle of Section -->
             <div class="drive-callout">
-                <h3>Thư Mục Minh Chứng Gốc</h3>
-                <p>Để đánh giá toàn bộ tài liệu báo cáo PDF nguyên văn cùng tệp tin minh chứng đầy đủ của mình, kính mời bạn ghé thăm thư mục Google Drive chính thức.</p>
+                <h3>Thư Mục Google Drive Bài Tập</h3>
+                <p>Kính mời bạn ghé thăm thư mục lưu trữ minh chứng chính thức, chứa toàn bộ báo cáo văn bản gốc (PDF) và ảnh thực hành nguyên vẹn của mình.</p>
                 <a href="https://drive.google.com/drive/folders/1RUFVadalCAWkFSZ28Xu3bCfkDKyb_vDg?usp=drive_link" target="_blank" class="btn-drive">
                     <i class="fa-brands fa-google-drive"></i> Truy cập Google Drive bài tập
                 </a>
@@ -1088,36 +1242,46 @@
                 <div class="task-block" id="task1">
                     <div class="task-header-meta">
                         <div class="task-title-group">
-                            <span class="task-badge">Bài tập 1 • Mục 1.4</span>
-                            <h3>Thao Tác Cơ Bản Với Tệp Tin Và Thư Mục</h3>
+                            <span class="task-badge">Nhiệm vụ 1</span>
+                            <h3>Nhiệm vụ 1: Quản lý tệp và thư mục</h3>
                         </div>
                         <span class="task-number">01</span>
                     </div>
                     <div class="task-grid-summary">
                         <div class="summary-column">
                             <h4>Mục tiêu bài học</h4>
-                            <p>Thiết lập thói quen lưu trữ dữ liệu an toàn, logic và có tính kỷ luật. Hiểu sâu quy luật tổ chức cây thư mục trên máy tính cá nhân để kiến tạo không gian làm việc số khoa học.</p>
+                            <p>Hiểu sâu cách cấu trúc và tổ chức không gian số khoa học trên hệ điều hành. Nắm rõ các quy tắc đặt tên tệp tối ưu, thao tác quản lý, di chuyển, sao lưu dữ liệu an toàn để tránh thất lạc tài liệu học tập.</p>
                         </div>
                         <div class="summary-column">
                             <h4>Bài học đúc kết</h4>
-                            <p>Không gian làm việc số phản ánh sự mạch lạc trong tư duy. Việc chuẩn hóa kỹ năng tổ chức dữ liệu chính là chiếc chìa khóa giúp mình quản trị thời gian và dự án vô cùng hiệu quả về sau.</p>
+                            <p>Kỷ luật trong tổ chức tệp tin phản ánh tư duy ngăn nắp của người làm nghiên cứu. Thư mục gọn gàng giúp nâng cao tốc độ định vị thông tin gấp nhiều lần khi thực hiện các dự án nhóm đồ sộ.</p>
                         </div>
                     </div>
 
-                    <!-- Interactive Showcase Task 1 (12 Steps Stepper) -->
-                    <div class="stepper-container">
-                        <div class="stepper-header">
-                            <span class="step-indicator" id="stepIndicator">BƯỚC 1 / 12</span>
-                            <span style="font-size: 0.8rem; color: var(--text-muted);">Mô Phỏng Trình Tự Thực Hành</span>
+                    <!-- Task 1 Interactive File Tree & Stepper -->
+                    <div class="task1-container">
+                        <div class="file-tree-card">
+                            <h4>Sơ đồ cấu trúc thư mục thực hành</h4>
+                            <div class="tree-node tree-root"><i class="fa-solid fa-hard-drive"></i> New Volume (E:)</div>
+                            <div class="tree-node tree-folder" style="margin-left: 1.5rem;"><i class="fa-solid fa-folder-open"></i> ThucHanh_NguyenPhuongLinh</div>
+                            <div class="tree-node tree-folder" style="margin-left: 3rem;"><i class="fa-solid fa-folder"></i> TaiLieu</div>
+                            <div class="tree-node tree-file" style="margin-left: 4.5rem;"><i class="fa-regular fa-file-lines"></i> GhiChuQuanTrong.txt</div>
                         </div>
-                        <div class="step-content">
-                            <h5 id="stepTitle">Mở File Explorer trên Windows</h5>
-                            <p id="stepDesc">Sử dụng tổ hợp phím tắt nhanh hoặc tương tác trực quan trên thanh tác vụ của hệ điều hành.</p>
-                            <div class="step-mockup" id="stepMockup">Phím tắt: [Windows + E] -> Cửa sổ File Explorer xuất hiện</div>
-                        </div>
-                        <div class="stepper-controls">
-                            <button class="btn-step" id="prevStepBtn" onclick="moveStep(-1)" disabled>Trước</button>
-                            <button class="btn-step" id="nextStepBtn" onclick="moveStep(1)">Sau</button>
+
+                        <div class="stepper-container">
+                            <div class="stepper-header">
+                                <span class="step-indicator" id="stepIndicator">BƯỚC 1 / 12</span>
+                                <span style="font-size: 0.8rem; color: var(--text-muted);">Mô Phỏng Trình Tự Các Bước</span>
+                            </div>
+                            <div class="step-content">
+                                <h5 id="stepTitle">Mở File Explorer trên Windows</h5>
+                                <p id="stepDesc">Sử dụng tổ hợp phím tắt nhanh hoặc tương tác nhấp chọn trực quan biểu tượng thư mục màu vàng ngay trên thanh tác vụ chính của màn hình Windows.</p>
+                                <div class="step-mockup" id="stepMockup">Phím tắt: [Windows + E] -> Cửa sổ File Explorer xuất hiện</div>
+                            </div>
+                            <div class="stepper-controls">
+                                <button class="btn-step" id="prevStepBtn" onclick="moveStep(-1)" disabled>Trước</button>
+                                <button class="btn-step" id="nextStepBtn" onclick="moveStep(1)">Sau</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1126,33 +1290,33 @@
                 <div class="task-block" id="task2">
                     <div class="task-header-meta">
                         <div class="task-title-group">
-                            <span class="task-badge">Bài tập 2 • Mục 2.4</span>
-                            <h3>Tìm Kiếm Và Đánh Giá Thông Tin Học Thuật</h3>
+                            <span class="task-badge">Nhiệm vụ 2</span>
+                            <h3>Nhiệm vụ 2: Tìm kiếm & đánh giá thông tin</h3>
                         </div>
                         <span class="task-number">02</span>
                     </div>
                     <div class="task-grid-summary">
                         <div class="summary-column">
                             <h4>Mục tiêu bài học</h4>
-                            <p>Rèn luyện kỹ năng nghiên cứu độc lập. Phân tích định lượng và đánh giá độ tin cậy của các nguồn tài liệu để loại bỏ tối đa hiện tượng "ảo giác thông tin" trong các báo cáo khoa học.</p>
+                            <p>Khai thác thông tin học thuật tinh nhuệ bằng các toán tử nâng cao trên Google Scholar và cơ sở dữ liệu số. Thẩm định toàn diện độ tin cậy của tài liệu khoa học thông qua uy tín tác giả, nhà xuất bản, phương pháp nghiên cứu và tính cập nhật.</p>
                         </div>
                         <div class="summary-column">
                             <h4>Bài học đúc kết</h4>
-                            <p>Môi trường học thuật đòi hỏi tính nghiêm túc tối đa. Đọc rộng nhưng phải chọn tinh, biết đặt nghi vấn trước mọi nguồn tin để giữ vững tính chính xác cao nhất cho tri thức mà mình tích hợp.</p>
+                            <p>Đãi cát tìm vàng giữa bão thông tin số đòi hỏi tinh thần hoài nghi khoa học. Phân tích định lượng và đánh giá độ uy tín từng nguồn tham chiếu giúp xây dựng nền móng lập luận học thuật vững vàng.</p>
                         </div>
                     </div>
 
-                    <!-- Interactive Showcase Task 2 (Detailed Papers Table) -->
-                    <h5 style="font-size: 1.1rem; color: #fff; margin-bottom: 1rem;"><i class="fa-solid fa-list-check" style="color: var(--cosmic-blue); margin-right: 8px;"></i> Danh sách 10 Nguồn Tài Liệu Đối Chiếu</h5>
+                    <!-- Task 2 Database Table with Detailed Reviews -->
+                    <h5 style="font-size: 1.1rem; color: #fff; margin-bottom: 1rem;"><i class="fa-solid fa-list-check" style="color: var(--cosmic-blue); margin-right: 8px;"></i> Kết quả thẩm định 10 nguồn tài liệu về Ứng dụng AI trong giáo dục</h5>
                     <div class="table-container">
                         <table>
                             <thead>
                                 <tr>
                                     <th>STT</th>
                                     <th>Tài liệu nghiên cứu</th>
-                                    <th>Phân loại</th>
-                                    <th>Tác giả / Nhà xuất bản</th>
+                                    <th>Tác giả / NXB</th>
                                     <th>Phương pháp</th>
+                                    <th>Tóm tắt nhận định & Trích xuất học thuật</th>
                                     <th>Độ tin cậy</th>
                                 </tr>
                             </thead>
@@ -1160,82 +1324,82 @@
                                 <tr>
                                     <td>1</td>
                                     <td>Ứng dụng AI trong học tiếng Anh</td>
-                                    <td>Bài báo khoa học</td>
                                     <td>Đại học Đà Nẵng</td>
-                                    <td>Khảo sát thực tiễn</td>
-                                    <td><span class="rating-star">★★★★★</span> (5)</td>
+                                    <td>Khảo sát định lượng</td>
+                                    <td class="td-summary">Phân tích thực trạng sinh viên sư phạm ngoại ngữ sử dụng AI để cải thiện từ vựng, ngữ pháp. Phương pháp khảo sát chuẩn mực. <br><a class="btn-table-link" href="#">Liên kết bài báo</a></td>
+                                    <td><span class="rating-star">★★★★★</span> (5/5)</td>
                                 </tr>
                                 <tr>
                                     <td>2</td>
                                     <td>Ứng dụng trí tuệ nhân tạo học y khoa</td>
-                                    <td>Bài báo khoa học</td>
                                     <td>Phạm Công Vũ</td>
-                                    <td>Phân tích đối sánh</td>
-                                    <td><span class="rating-star">★★★★★</span> (5)</td>
+                                    <td>Phân tích hệ thống</td>
+                                    <td class="td-summary">Nghiên cứu mô hình ngôn ngữ lớn ứng dụng trong chẩn đoán lâm sàng ảo và học tập mô phỏng trong y khoa. Độ chính xác cao. <br><a class="btn-table-link" href="#">Liên kết bài báo</a></td>
+                                    <td><span class="rating-star">★★★★★</span> (5/5)</td>
                                 </tr>
                                 <tr>
                                     <td>3</td>
                                     <td>Kỷ yếu hội thảo AI trong giáo dục</td>
-                                    <td>Kỷ yếu hội thảo</td>
                                     <td>HUFLIT</td>
-                                    <td>Tổng hợp thực chứng</td>
-                                    <td><span class="rating-star">★★★★☆</span> (4)</td>
+                                    <td>Hội thảo khoa học</td>
+                                    <td class="td-summary">Nhận diện cơ hội, thách thức và xu hướng ứng dụng AI trên quy mô giáo dục phổ thông. Thông tin chất lượng cao, có tính thời sự.<br><a class="btn-table-link" href="https://hanoimoi.vn/nhan-dien-co-hoi-thach-thuc-va-huong-di-cua-ai-voi-giao-duc-pho-thong-715858.html" target="_blank">Xem nguồn</a></td>
+                                    <td><span class="rating-star">★★★★☆</span> (4/5)</td>
                                 </tr>
                                 <tr>
                                     <td>4</td>
                                     <td>Ứng dụng AI học tập & nghiên cứu</td>
-                                    <td>Tài liệu chuyên khảo</td>
                                     <td>Vinabook</td>
-                                    <td>Hướng dẫn kỹ thuật</td>
-                                    <td><span class="rating-star">★★★★☆</span> (4)</td>
+                                    <td>Tài liệu đào tạo</td>
+                                    <td class="td-summary">Tài liệu tập huấn chuyên đề ứng dụng trí tuệ nhân tạo trong học tập cá nhân và nghiên cứu khoa học một cách có định hướng.<br><a class="btn-table-link" href="https://ai.vinabook.edu.vn/tap-huan-chuyen-de-ung-dung-tri-tue-nhan-tao-ai-trong-hoc-tap-va-nghien-cuu-khoa-hoc/" target="_blank">Xem nguồn</a></td>
+                                    <td><span class="rating-star">★★★★☆</span> (4/5)</td>
                                 </tr>
                                 <tr>
                                     <td>5</td>
-                                    <td>Tác động AI giáo dục đại học (UEH)</td>
-                                    <td>Bài viết học thuật</td>
-                                    <td>UEH / EFL Journal</td>
-                                    <td>Phân tích định tính</td>
-                                    <td><span class="rating-star">★★★★☆</span> (4)</td>
+                                    <td>UEH AI trong giáo dục đại học</td>
+                                    <td>UEH</td>
+                                    <td>Phân tích học thuật</td>
+                                    <td class="td-summary">Đánh giá tác động của các chatbot AI đối với năng lực tư duy phản biện và khả năng viết học thuật của sinh viên đại học.<br><a class="btn-table-link" href="https://www.asian-efl-journal.com" target="_blank">Xem nguồn</a></td>
+                                    <td><span class="rating-star">★★★★☆</span> (4/5)</td>
                                 </tr>
                                 <tr>
                                     <td>6</td>
-                                    <td>Ứng dụng AI giáo dục VNU</td>
-                                    <td>Báo cáo khoa học</td>
-                                    <td>Trường Đại học Giáo dục</td>
-                                    <td>Tổng hợp hệ thống</td>
-                                    <td><span class="rating-star">★★★★☆</span> (4)</td>
+                                    <td>AI ĐHQGHN trong giáo dục đại học</td>
+                                    <td>VNU</td>
+                                    <td>Báo cáo trường học</td>
+                                    <td class="td-summary">Đại học Giáo dục (VNU) tiên phong nghiên cứu và ứng dụng AI trên nền tảng khoa học về sự học, giúp cá nhân hóa lộ trình học.<br><a class="btn-table-link" href="https://education.vnu.edu.vn/tin-tuc/truong-dai-hoc-giao-duc-hqghn-tien-phong-nghien-cuu-ung-dung-ai-trong-giao-duc-tren-nen-tang-khoa-hoc-ve-hoc-tap/?hitcount=0" target="_blank">Xem nguồn</a></td>
+                                    <td><span class="rating-star">★★★★☆</span> (4/5)</td>
                                 </tr>
                                 <tr>
                                     <td>7</td>
-                                    <td>Hội thảo khoa học nhân văn & AI</td>
-                                    <td>Báo cáo hội nghị</td>
-                                    <td>VNU-USSH / Vista</td>
+                                    <td>Hội thảo AI: Giáo dục nhân văn</td>
+                                    <td>VNU – USSH</td>
                                     <td>Thảo luận chuyên sâu</td>
-                                    <td><span class="rating-star">★★★☆☆</span> (3)</td>
+                                    <td class="td-summary">Đề xuất phát triển năng lực AI cho người học hướng tới một nền giáo dục nhân văn và sáng tạo trong thời đại số hóa.<br><a class="btn-table-link" href="https://vista.gov.vn/vi/news/khoa-hoc-nhan-van/phat-trien-nang-luc-ai-cho-nguoi-hoc-huong-toi-nen-giao-duc-nhan-van-va-sang-tao-12202.html" target="_blank">Xem nguồn</a></td>
+                                    <td><span class="rating-star">★★★☆☆</span> (3/5)</td>
                                 </tr>
                                 <tr>
                                     <td>8</td>
-                                    <td>Báo chí AI đào tạo sinh viên</td>
-                                    <td>Báo chí truyền thông</td>
-                                    <td>Báo Nhân dân</td>
-                                    <td>Tổng hợp thời sự</td>
-                                    <td><span class="rating-star">★★★☆☆</span> (3)</td>
+                                    <td>Ứng dụng AI đào tạo người học ULIS</td>
+                                    <td>Nhân dân / USSH</td>
+                                    <td>Báo chí tổng hợp</td>
+                                    <td class="td-summary">Tổng thuật hoạt động của dự án phát triển năng lực trí tuệ nhân tạo cho người học tại Trường Đại học KHXH&NV.<br><a class="btn-table-link" href="https://sim.ussh.vnu.edu.vn/vi/news/hoat-dong-cua-du-an/hoi-thao-phat-trien-nang-luc-tri-tue-nhan-tao-ai-cho-nguoi-hoc-tai-truong-dai-hoc-khoa-hoc-xa-hoi-va-nhan-van-620.html" target="_blank">Xem nguồn</a></td>
+                                    <td><span class="rating-star">★★★☆☆</span> (3/5)</td>
                                 </tr>
                                 <tr>
                                     <td>9</td>
-                                    <td>Ứng dụng AI trong giảng dạy đại học</td>
-                                    <td>Truyền thông số</td>
+                                    <td>AI trong giảng dạy đại học</td>
                                     <td>Vietnam.vn</td>
-                                    <td>Tổng hợp dư luận</td>
-                                    <td><span class="rating-star">★★★★☆</span> (4)</td>
+                                    <td>Báo chí thời sự</td>
+                                    <td class="td-summary">Bài viết của Báo Nhân Dân đăng lại trên Vietnam.vn khẳng định việc ứng dụng AI trong giảng dạy là xu hướng tất yếu trong tương lai.<br><a class="btn-table-link" href="https://nhandan.vn/ung-dung-ai-trong-giang-day-dai-hoc-xu-huong-tat-yeu-trong-tuong-lai-post920385.html" target="_blank">Xem nguồn</a></td>
+                                    <td><span class="rating-star">★★★★☆</span> (4/5)</td>
                                 </tr>
                                 <tr>
                                     <td>10</td>
-                                    <td>Thực tiễn ứng dụng AI giáo dục VN</td>
-                                    <td>Bài viết tổng hợp</td>
+                                    <td>Thực tiễn ứng dụng AI ở VN</td>
                                     <td>VNU / VTV.vn</td>
-                                    <td>Phân tích thời sự</td>
-                                    <td><span class="rating-star">★★★☆☆</span> (3)</td>
+                                    <td>Tổng hợp thông tin</td>
+                                    <td class="td-summary">Báo cáo thực trạng ứng dụng AI tại Việt Nam, nêu rõ cơ hội đổi mới giảng dạy và những thách thức về hạ tầng số.<br><a class="btn-table-link" href="https://vtv.vn/cong-nghe/thuc-tien-ung-dung-ai-trong-giao-duc-tai-viet-nam-co-hoi-thach-thuc-va-hanh-trinh-doi-moi-20250612125504105.htm" target="_blank">Xem nguồn</a></td>
+                                    <td><span class="rating-star">★★★☆☆</span> (3/5)</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -1246,32 +1410,32 @@
                 <div class="task-block" id="task3">
                     <div class="task-header-meta">
                         <div class="task-title-group">
-                            <span class="task-badge">Bài tập 3 • Mục 3.4</span>
-                            <h3>Viết Prompt Hiệu Quả Cho Tác Vụ Học Tập</h3>
+                            <span class="task-badge">Nhiệm vụ 3</span>
+                            <h3>Nhiệm vụ 3: Viết Prompt hiệu quả</h3>
                         </div>
                         <span class="task-number">03</span>
                     </div>
                     <div class="task-grid-summary">
                         <div class="summary-column">
                             <h4>Mục tiêu bài học</h4>
-                            <p>Hiểu sâu và làm chủ kỹ thuật giao tiếp với các hệ thống AI (Prompt Engineering). Chuyển hóa phương pháp hỏi đáp thô sơ thành hệ thống câu lệnh có phân vai, định dạng và giới hạn khắt khe.</p>
+                            <p>Nắm vững tư duy thiết kế kỹ thuật câu lệnh có tính cấu trúc. Học cách chuyển hóa ngôn ngữ tự nhiên thành một hệ thống câu lệnh có bối cảnh giả lập, giới hạn dữ liệu đầu ra và định hình rõ phong cách lập luận chuyên môn.</p>
                         </div>
                         <div class="summary-column">
                             <h4>Bài học đúc kết</h4>
-                            <p>Trí tuệ nhân tạo chỉ phản ánh độ sắc sảo trong tư duy của người dùng. Một câu lệnh nông cạn chỉ mang lại kết quả rập khuôn; một câu lệnh sâu sắc mở ra chân trời tri thức bất ngờ.</p>
+                            <p>AI là một tấm gương phản chiếu năng lực tư duy của người hỏi. Khi chúng ta đưa vào một câu lệnh có cấu trúc sắc sảo và rõ ràng, chất lượng kết quả phản hồi học thuật từ AI sẽ gia tăng vượt bậc.</p>
                         </div>
                     </div>
 
-                    <!-- Interactive Showcase Task 3 (Tabbed Prompt Comparer) -->
-                    <h5 style="font-size: 1.1rem; color: #fff; margin-bottom: 0.5rem;"><i class="fa-solid fa-code-compare" style="color: var(--cosmic-purple); margin-right: 8px;"></i> Trình So Sánh Ba Cấp Độ Prompt</h5>
+                    <!-- Task 3 Interactive Compare Tabs & Chat Sim -->
+                    <h5 style="font-size: 1.1rem; color: #fff; margin-bottom: 0.5rem;"><i class="fa-solid fa-code-compare" style="color: var(--cosmic-purple); margin-right: 8px;"></i> Trình so sánh 3 cấp độ Prompt tối ưu học thuật</h5>
                     <div class="prompt-tabs">
-                        <button class="tab-trigger active" onclick="switchPromptTab(1)">Tác vụ 1: Tóm tắt học thuật</button>
-                        <button class="tab-trigger" onclick="switchPromptTab(2)">Tác vụ 2: Giải thích khái niệm</button>
-                        <button class="tab-trigger" onclick="switchPromptTab(3)">Tác vụ 3: Tạo bộ câu hỏi ôn tập</button>
+                        <button class="tab-trigger active" onclick="switchPromptTab(1)">Tác vụ 1: Tóm tắt bài đọc (Lợi ích học ngoại ngữ)</button>
+                        <button class="tab-trigger" onclick="switchPromptTab(2)">Tác vụ 2: Giải thích khái niệm (Tâm lý học hành vi)</button>
+                        <button class="tab-trigger" onclick="switchPromptTab(3)">Tác vụ 3: Tạo bộ câu hỏi ôn tập (Tâm lý học hành vi)</button>
                     </div>
 
                     <div class="compare-grid" id="promptCompareArea">
-                        <!-- Content dynamically loaded via JS to match current tab selection -->
+                        <!-- Content dynamically loaded via JS below -->
                     </div>
                 </div>
 
@@ -1279,39 +1443,77 @@
                 <div class="task-block" id="task4">
                     <div class="task-header-meta">
                         <div class="task-title-group">
-                            <span class="task-badge">Bài tập 4 • Mục 4.4</span>
-                            <h3>Sử Dụng Công Cụ Cộng Tác Trực Tuyến Nhóm</h3>
+                            <span class="task-badge">Nhiệm vụ 4</span>
+                            <h3>Nhiệm vụ 4: Hợp tác trực tuyến</h3>
                         </div>
                         <span class="task-number">04</span>
                     </div>
                     <div class="task-grid-summary">
                         <div class="summary-column">
                             <h4>Mục tiêu bài học</h4>
-                            <p>Làm chủ kỹ năng quản lý dự án và giao tiếp trực tuyến đồng bộ. Ứng dụng hệ thống Trello, Google Docs và MS Teams để cùng nhóm vượt qua trở ngại khoảng cách địa lý, nâng tầm hiệu suất làm việc.</p>
+                            <p>Làm chủ kỹ năng điều phối dự án và truyền thông trong làm việc nhóm trực tuyến. Phối hợp nhịp nhàng các nền tảng Trello, Google Docs và MS Teams để cùng nhau tháo gỡ khó khăn về thời gian và địa lý.</p>
                         </div>
                         <div class="summary-column">
                             <h4>Bài học đúc kết</h4>
-                            <p>Hợp tác số hiệu quả nằm ở việc thấu hiểu quy trình và duy trì tính minh bạch. Việc chủ động lắng nghe đồng đội và ghi chú cẩn trọng chính là phương thuốc triệt tiêu mọi xung đột nhóm.</p>
+                            <p>Hiệu suất nhóm số không nằm ở sự phô trương kỹ thuật mà nằm ở sự thấu hiểu quy trình cộng tác. Thiết lập thói quen ghi chú cẩn mật và duy trì tần suất họp nhóm định kỳ chính là nền tảng giải quyết triệt để sự chồng chéo công việc.</p>
                         </div>
                     </div>
 
-                    <!-- Interactive Showcase Task 4 (Collaboration Cycle) -->
-                    <h5 style="font-size: 1.1rem; color: #fff; margin-bottom: 1rem;"><i class="fa-solid fa-people-group" style="color: var(--cosmic-blue); margin-right: 8px;"></i> Sơ đồ hợp tác dự án: "Gia sư AI học tiếng Trung cá nhân hóa"</h5>
-                    <div class="collaboration-map">
-                        <div class="tool-node">
-                            <i class="fa-brands fa-trello"></i>
-                            <h5>Quản Trị Tiến Độ (Trello)</h5>
-                            <p>Phân bổ khối lượng công việc, theo dõi trạng thái nhiệm vụ và đánh dấu mốc deadline cá nhân chặt chẽ.</p>
+                    <!-- Task 4 Process Timeline & Conflict Table -->
+                    <div class="task4-grid">
+                        <div class="collaboration-map">
+                            <h5 style="color: #fff;"><i class="fa-solid fa-timeline" style="color: var(--cosmic-blue); margin-right: 6px;"></i> Hệ thống hóa quy trình dự án cá nhân hóa học tiếng Trung</h5>
+                            <div class="tool-node">
+                                <i class="fa-brands fa-trello"></i>
+                                <div>
+                                    <h5>Quản Trị Tiến Độ Đồng Bộ (Trello)</h5>
+                                    <p>Thiết lập danh sách bảng công việc, chia nhỏ đầu việc cụ thể và giám sát chặt chẽ deadline cá nhân trong nhóm.</p>
+                                </div>
+                            </div>
+                            <div class="tool-node">
+                                <i class="fa-regular fa-file-word"></i>
+                                <div>
+                                    <h5>Đồng Biên Soạn Thực Tế (Google Docs)</h5>
+                                    <p>Tương tác viết báo cáo chung. Lắng nghe và xử lý trực tiếp phản hồi của các thành viên (như các bình luận sửa lỗi của Linh Linh và Nguyễn Nga).</p>
+                                </div>
+                            </div>
+                            <div class="tool-node">
+                                <i class="fa-solid fa-video"></i>
+                                <div>
+                                    <h5>Tranh Biện & Duy Trì Họp Nhóm (MS Teams)</h5>
+                                    <p>Tổ chức các buổi họp nhóm trực tuyến ghi nhận ý kiến lúc 9:39 PM, thảo luận giải pháp tháo gỡ khó khăn về tài liệu dịch thuật tiếng Trung.</p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="tool-node">
-                            <i class="fa-regular fa-file-word"></i>
-                            <h5>Đồng Biên Soạn (Google Docs)</h5>
-                            <p>Xây dựng nội dung cốt lõi, bình luận đóng góp phản biện trực tiếp theo thời gian thực.</p>
-                        </div>
-                        <div class="tool-node">
-                            <i class="fa-solid fa-video"></i>
-                            <h5>Tranh Biện & Họp Nhóm (MS Teams)</h5>
-                            <p>Tổ chức họp online định kỳ, trao đổi tiến độ và thống nhất các tài liệu chuyên ngành phức tạp.</p>
+
+                        <div class="collaboration-details">
+                            <h4>Báo cáo chi tiết: Khó khăn & Giải pháp thực tế</h4>
+                            <table class="collab-table">
+                                <thead>
+                                    <tr>
+                                        <th>Khó khăn đối mặt</th>
+                                        <th>Giải pháp khắc phục</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Chưa quen phân chia khối lượng công việc, dễ dẫn đến trễ deadline nhóm.</td>
+                                        <td>Chủ động trao đổi thường nhật với các thành viên để thống nhất lộ trình làm việc rõ ràng.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sự chồng chéo công việc xảy ra do luồng truyền thông bị gián đoạn.</td>
+                                        <td>Sử dụng Trello cập nhật trạng thái liên tục và đặt quy tắc đặt tên văn bản chuẩn hóa.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tài liệu chuyên ngành tiếng Trung chứa nhiều thuật ngữ công nghệ phức tạp.</td>
+                                        <td>Dành thời gian nghiên cứu sâu, xây dựng bảng chú giải thuật ngữ chung để cả nhóm cùng tra cứu.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Trở ngại trong việc phối hợp thời gian biểu làm việc trực tuyến của các thành viên.</td>
+                                        <td>Lên lịch cố định trên MS Teams, phân bổ quỹ thời gian hợp lý giữa tự học và nghiên cứu nhóm.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -1320,40 +1522,62 @@
                 <div class="task-block" id="task5">
                     <div class="task-header-meta">
                         <div class="task-title-group">
-                            <span class="task-badge">Bài tập 5 • Mục 5.4</span>
-                            <h3>Sử Dụng AI Tạo Sinh Để Hỗ Trợ Sáng Tạo Nội Dung</h3>
+                            <span class="task-badge">Nhiệm vụ 5</span>
+                            <h3>Nhiệm vụ 5: Sáng tạo nội dung với AI</h3>
                         </div>
                         <span class="task-number">05</span>
                     </div>
                     <div class="task-grid-summary">
                         <div class="summary-column">
                             <h4>Mục tiêu bài học</h4>
-                            <p>Ứng dụng tối đa năng lực đồng sáng tạo (Co-creation) giữa người và máy. Kết hợp đồng thời nhiều hệ thống AI tạo sinh chuyên biệt để tối ưu hóa quy trình thiết kế slide văn hóa nghệ thuật tinh xảo.</p>
+                            <p>Sáng tạo nội dung đa phương tiện bằng mô hình đồng sáng tạo "Người và Máy" (Human-AI Co-creation). Kết hợp đồng thời năng lực sáng tạo của 3 hệ thống trí tuệ nhân tạo chuyên biệt để tạo ra bộ slide thuyết trình văn hóa đỉnh cao.</p>
                         </div>
                         <div class="summary-column">
                             <h4>Bài học đúc kết</h4>
-                            <p>AI là một cộng sự mạnh mẽ trong việc khơi nguồn ý tưởng ban đầu, nhưng sự tinh chỉnh duy mỹ, sự đồng điệu trong cảm xúc mạch truyện và kiểm định lịch sử vẫn luôn cần bàn tay của con người.</p>
+                            <p>AI là một trợ lý tuyệt vời để phá vỡ áp lực tư duy ban đầu, nhưng sự tinh tế trong việc sắp xếp khoảng trống, định dạng typography, cảm nhận nhịp điệu kể chuyện và kiểm chứng tính xác thực lịch sử vẫn mãi là đặc quyền của con người.</p>
                         </div>
                     </div>
 
-                    <!-- Interactive Showcase Task 5 (Pipeline Flow) -->
-                    <h5 style="font-size: 1.1rem; color: #fff; margin-bottom: 1rem;"><i class="fa-solid fa-bezier-curve" style="color: var(--cosmic-purple); margin-right: 8px;"></i> Sơ đồ Dự án: "Tinh hoa Ẩm thực Trung Hoa" (Bát Đại Lục Vị)</h5>
+                    <!-- Task 5 Pipeline Flow & Double Case Study -->
                     <div class="pipeline-flow">
                         <div class="pipeline-card">
                             <h5>Giai đoạn 1: Văn bản</h5>
-                            <p>Sử dụng <strong>Google Gemini</strong> để phát triển dàn bài học thuật và đề xuất các ý tưởng từ khóa hình ảnh trực quan.</p>
+                            <p>Sử dụng <strong>Google Gemini</strong> xây dựng đề cương 5 chương học thuật dựa trên vai diễn Học giả ẩm thực.</p>
                         </div>
                         <div class="pipeline-card">
                             <h5>Giai đoạn 2: Hình ảnh</h5>
-                            <p>Sử dụng <strong>DALL-E 3</strong> để tạo lập tác phẩm ẩm thực độc bản (Vịt quay Bắc Kinh, Đậu phụ Ma Bà) phong cách 3D siêu thực.</p>
+                            <p>Sử dụng <strong>DALL-E 3</strong> thiết kế tranh tĩnh vật món Vịt quay Bắc Kinh 3D kết hợp thư pháp.</p>
                         </div>
                         <div class="pipeline-card">
                             <h5>Giai đoạn 3: Bố cục</h5>
-                            <p>Sử dụng <strong>Canva AI</strong> kết hợp Magic Design để đưa ra lưới bố cục trang nhã và đồng bộ tông màu ấm áp cổ kính.</p>
+                            <p>Sử dụng <strong>Canva AI</strong> định hình phong cách thiết kế lưới và tông màu chủ đạo trang nhã.</p>
                         </div>
                         <div class="pipeline-card human">
-                            <h5>Bước 4: Thổi Hồn (Người)</h5>
-                            <p>Phương Linh chỉnh sửa lỗi chữ Hán, tinh chỉnh khoảng trống typography 1.25, liên kết mạch xúc cảm giác quan từ Tứ Xuyên sang Quảng Đông.</p>
+                            <h5>Bước 4: Con người</h5>
+                            <p>Phương Linh hiệu đính sử học, xử lý lỗi rác đồ họa thư pháp và tinh chỉnh khoảng cách dòng 1.25.</p>
+                        </div>
+                    </div>
+
+                    <div class="deep-case-study">
+                        <h4>Báo cáo chuyên sâu: Dự án "Tinh hoa Ẩm thực Trung Hoa" (Bát Đại Lục Vị)</h4>
+                        <div class="study-grid">
+                            <div class="study-box">
+                                <h5>1. Giai đoạn thiết lập nội dung học thuật (Google Gemini)</h5>
+                                <p><strong>Prompt phân vai:</strong> "Hãy đóng vai là một Chuyên gia Nghiên cứu Văn hóa Ẩm thực Á Đông và một Giám đốc Sáng tạo Nội dung xuất sắc... Hãy lập một dàn ý cấu trúc gồm 5 phần lớn..."</p>
+                                <p><strong>Kết quả cấu trúc 5 chương tinh lọc:</strong><br>
+                                    • <em>Chương 1: Khởi Nguyên Âm Dương</em> (Giải thích triết lý cân bằng nhiệt độ trong thực phẩm, ví dụ: dưa chuột/đậu phụ thuộc tính Âm hòa hợp cùng thịt cừu thuộc tính Dương).<br>
+                                    • <em>Chương 2: Bát Đại Hệ Phái</em> (Giới thiệu các trường phái: Tứ Xuyên, Quảng Đông, Giang Tô, Sơn Đông, Phúc Kiến, Hồ Nam, Chiết Giang, An Huy).<br>
+                                    • <em>Chương 3: Y Thực Đồng Nguyên</em> (Lý giải triết lý món ăn cũng là phương thuốc trị bệnh của y học Đông phương cổ).<br>
+                                    • <em>Chương 4: Mỹ Vị Nhân Gian</em> (Phân tích quy trình chế biến công phu của món Vịt quay Bắc Kinh và Đậu phụ Ma Bà).<br>
+                                    • <em>Chương 5: Vũ Điệu Hóa Hợp</em> (Tổng kết xu hướng giao thoa văn hóa ẩm thực hiện đại).
+                                </p>
+                            </div>
+                            <div class="study-box">
+                                <h5>2. Thách thức kỹ thuật hình ảnh & Dấu ấn Con người</h5>
+                                <p><strong>Prompt tạo hình ảnh (DALL-E 3):</strong> "A cinematic, high-end photography of traditional Chinese food Peking Duck, served on an elegant imperial ceramic plate. In the background, subtle elements of ancient Chinese painting with misty mountains and calligraphy..."</p>
+                                <p><strong>Hiện tượng lỗi AI & Cách khắc phục:</strong> Hình ảnh DALL-E trả về vô cùng sống động nhưng phần chữ thư pháp Hán tự ở hình nền bị lỗi nghiêm trọng (các nét chữ bị méo mó, biến dạng thành các ký tự vô nghĩa). Mình đã chủ động đưa ảnh vào phần mềm đồ họa chuyên dụng để tẩy xóa, làm sạch các chi tiết lỗi để đảm bảo sự tôn trọng cao nhất đối với chữ viết dân tộc.</p>
+                                <p><strong>Kiểm định tri thức sử học:</strong> AI thường có xu hướng "ảo giác", gán ghép sai mốc thời gian ra đời của các món ăn. Mình đã tiến hành tra cứu thủ công, bổ sung các điển tích chính xác liên quan đến Từ Hy Thái Hậu và Hoàng đế Càn Long nhằm bảo chứng cho tính học thuật nghiêm túc của báo cáo.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1362,65 +1586,51 @@
                 <div class="task-block" id="task6">
                     <div class="task-header-meta">
                         <div class="task-title-group">
-                            <span class="task-badge">Bài tập 6 • Mục 6.4</span>
-                            <h3>Sử Dụng AI Có Trách Nhiệm Trong Học Tập</h3>
+                            <span class="task-badge">Nhiệm vụ 6</span>
+                            <h3>Nhiệm vụ 6: AI có trách nhiệm</h3>
                         </div>
                         <span class="task-number">06</span>
                     </div>
                     <div class="task-grid-summary">
                         <div class="summary-column">
                             <h4>Mục tiêu bài học</h4>
-                            <p>Ý thức rõ tầm quan trọng của Liêm chính học thuật và đạo đức số. Nghiên cứu sâu sắc các định hướng giáo dục đổi mới của ĐHQGHN để xây dựng bộ quy tắc ứng xử chuẩn mực với trí tuệ nhân tạo.</p>
+                            <p>Ý thức rõ các chuẩn mực đạo đức số và quy tắc liêm chính học thuật. Tìm hiểu sâu sắc định hướng giáo dục đổi mới của ĐHQGHN để xây dựng bộ quy tắc ứng xử công bằng, minh bạch với các hệ thống Trí tuệ nhân tạo.</p>
                         </div>
                         <div class="summary-column">
                             <h4>Bài học đúc kết</h4>
-                            <p>Công nghệ chỉ thực sự nâng tầm giá trị con người khi nó được kiểm soát bằng một lương tri trong sáng. Không lạm dụng, luôn minh bạch chính là danh dự cao nhất của người học.</p>
+                            <p>AI là một công cụ bổ trợ tuyệt vời giúp thăng hoa năng lực tư duy, nhưng danh dự và tiếng nói độc bản của một học giả chân chính nằm ở sự liêm chính, minh bạch trong suốt hành trình học thuật.</p>
                         </div>
                     </div>
 
-                    <!-- Interactive Showcase Task 6 (Personal Code of Conduct) -->
-                    <h5 style="font-size: 1.1rem; color: #fff; margin-bottom: 1rem;"><i class="fa-solid fa-scale-balanced" style="color: var(--cosmic-blue); margin-right: 8px;"></i> 7 Nguyên Tắc Đạo Đức Vàng</h5>
+                    <!-- Task 6 Golden Rules Checklist -->
+                    <h5 style="font-size: 1.1rem; color: #fff; margin-bottom: 1rem;"><i class="fa-solid fa-shield-halved" style="color: var(--cosmic-blue); margin-right: 8px;"></i> Bộ nguyên tắc ứng xử học thuật số của Phương Linh</h5>
                     <div class="principles-grid">
                         <div class="principle-item">
                             <span class="principle-num">01</span>
                             <div class="principle-body">
                                 <h5>Trợ lý, không thay thế</h5>
-                                <p>Xem AI là công cụ hỗ trợ tư duy, không bao giờ để nó thay thế khả năng suy luận, phân tích độc lập của bản thân.</p>
+                                <p>Sử dụng AI để khơi mở ý tưởng ban đầu, tuyệt đối không để công cụ làm mòn khả năng suy luận phản biện của bản thân.</p>
                             </div>
                         </div>
                         <div class="principle-item">
                             <span class="principle-num">02</span>
                             <div class="principle-body">
-                                <h5>Kiểm chứng đa nguồn</h5>
-                                <p>Tuyệt đối không tin tưởng hoàn toàn vào kết quả đầu ra của AI; luôn đối chiếu thông tin với tài liệu chuyên khảo uy tín.</p>
+                                <h5>Nguyên tắc kiểm chứng đa nguồn</h5>
+                                <p>Tuyệt đối không tin cậy vô điều kiện kết quả đầu ra của AI; luôn kiểm chứng thông tin dựa trên sách chuyên khảo uy tín.</p>
                             </div>
                         </div>
                         <div class="principle-item">
                             <span class="principle-num">03</span>
                             <div class="principle-body">
                                 <h5>Minh bạch sử dụng</h5>
-                                <p>Công khai rõ ràng sự tham gia, phạm vi hỗ trợ của trí tuệ nhân tạo trong các báo cáo khoa học cá nhân.</p>
+                                <p>Chủ động ghi nhận sự đóng góp của các chatbot AI (ChatGPT, Gemini) trong phần kết của các slide thuyết trình học thuật.</p>
                             </div>
                         </div>
                         <div class="principle-item">
                             <span class="principle-num">04</span>
                             <div class="principle-body">
-                                <h5>Không sao chép nguyên văn</h5>
-                                <p>Sử dụng ý tưởng từ AI làm điểm khởi đầu, viết lại và diễn giải hoàn toàn bằng giọng văn học thuật của mình.</p>
-                            </div>
-                        </div>
-                        <div class="principle-item">
-                            <span class="principle-num">05</span>
-                            <div class="principle-body">
-                                <h5>Tôn trọng sở hữu trí tuệ</h5>
-                                <p>Trích dẫn đầy đủ tác phẩm và nguồn thông tin gốc đã huấn luyện hoặc tham chiếu, không nhận vơ thành quả sáng tạo.</p>
-                            </div>
-                        </div>
-                        <div class="principle-item">
-                            <span class="principle-num">06</span>
-                            <div class="principle-body">
-                                <h5>Bảo mật dữ liệu</h5>
-                                <p>Có ý thức bảo vệ dữ liệu số, thông tin học tập cá nhân khi tương tác với các ứng dụng trí tuệ nhân tạo trực tuyến.</p>
+                                <h5>Tôn trọng bản quyền tác giả</h5>
+                                <p>Nhận thức rõ vùng xám pháp lý khi AI được huấn luyện dựa trên tác phẩm hội họa của các nghệ sĩ thế giới để ứng xử tử tế.</p>
                             </div>
                         </div>
                     </div>
@@ -1438,31 +1648,31 @@
                     <span class="badge" style="display: block; margin: 0 auto 1rem auto;">Nhìn Lại Chặng Đường</span>
                     <h3>Báo Cáo Tổng Kết Dự Án Cá Nhân</h3>
                     <p style="max-width: 800px; margin: 0 auto; text-align: center; color: var(--text-muted); font-weight: 300;">
-                        Sau một hành trình học tập và tự trải nghiệm nghiêm túc với học phần, Phương Linh đã đúc rút được những bài học sâu sắc thông qua việc đối diện trực tiếp với những thuận lợi và khó khăn.
+                        Sau hành trình một học kỳ nghiên cứu nghiêm túc với học phần Nhập môn Công nghệ số và AI, Phương Linh đã đúc rút được những bài học sâu sắc thông qua việc đối diện trực tiếp với những thuận lợi và khó khăn thực tế.
                     </p>
                     <div class="reflection-subgrid">
                         <div class="reflection-card">
-                            <h4><i class="fa-regular fa-face-smile"></i> Thuận Lợi Khách Quan</h4>
+                            <h4><i class="fa-regular fa-face-smile"></i> Thuận Lợi Gặt Hái</h4>
                             <ul>
-                                <li><strong>Tài nguyên phong phú:</strong> Được tiếp cận trực tiếp với các mô hình ngôn ngữ lớn (Gemini, ChatGPT) và nền tảng tạo sinh hàng đầu thế giới để thực hành.</li>
-                                <li><strong>Hệ thống bài giảng khoa học:</strong> Chương trình học của ULIS được thiết kế logic, đi từ các kỹ năng quản trị tệp tin cơ bản cho đến tư duy đạo đức AI phức tạp.</li>
-                                <li><strong>Sự ủng hộ từ thầy cô:</strong> Sự hướng dẫn tận tụy từ giảng viên bộ môn giúp mình dễ dàng vượt qua các rào cản kỹ thuật số ban đầu.</li>
+                                <li><strong>Hệ sinh thái số hiện đại:</strong> Được tiếp cận trực tiếp với các mô hình ngôn ngữ lớn mạnh mẽ để phục vụ học tập hiệu quả.</li>
+                                <li><strong>Đổi mới giáo dục của ULIS:</strong> Chương trình thiết kế khoa học, có định hướng rõ ràng cho sinh viên ngoại ngữ thích ứng với kỷ nguyên trí tuệ nhân tạo.</li>
+                                <li><strong>Năng lực tự học tiến bộ:</strong> Tự tin làm chủ các công cụ cộng tác nhóm và hiểu rõ cách viết prompt chuyên sâu phục vụ thực hành ngôn ngữ.</li>
                             </ul>
                         </div>
                         <div class="reflection-card">
                             <h4><i class="fa-regular fa-face-frown"></i> Khó Khăn Đối Mặt</h4>
                             <ul>
-                                <li><strong>Hiện tượng "Ảo giác số":</strong> AI tạo sinh văn bản thỉnh thoảng tự bịa ra thông tin lịch sử hoặc bóp méo chữ Hán cổ, đòi hỏi việc tra cứu nguồn gốc vô cùng mất thời gian.</li>
-                                <li><strong>Độ phức tạp của Prompt:</strong> Việc thiết kế được một prompt nâng cao có chiều sâu đòi hỏi sự thử nghiệm kiên nhẫn nhiều lần mới ra kết cấu như ý.</li>
-                                <li><strong>Khác biệt về kỹ năng nhóm:</strong> Các thành viên ban đầu có tốc độ thích ứng công nghệ khác nhau nên việc đồng bộ tiến độ trên Trello gặp chút trở ngại.</li>
+                                <li><strong>Ảo giác thông tin của AI:</strong> Hệ thống đôi khi tự bịa ra các điển tích lịch sử, đòi hỏi việc tra cứu đối chứng vô cùng kỹ lưỡng.</li>
+                                <li><strong>Lỗi kết xuất chữ Hán:</strong> Các mô hình tạo ảnh thường bị lỗi hiển thị chữ viết Trung Quốc, buộc mình phải chỉnh sửa hậu kỳ thủ công.</li>
+                                <li><strong>Sự khác biệt về tốc độ số:</strong> Ban đầu, việc đồng bộ hóa tiến độ làm việc nhóm trực tuyến trên Trello còn đôi chút chậm trễ.</li>
                             </ul>
                         </div>
                         <div class="reflection-card">
                             <h4><i class="fa-solid fa-graduation-cap"></i> Bài Học Quý Giá</h4>
                             <ul>
-                                <li><strong>Người là trung tâm:</strong> AI mãi chỉ là một tấm gương phản chiếu tri thức nhân loại. Nếu con người lười suy nghĩ, sản phẩm tạo ra chỉ là bản sao công nghiệp vô hồn.</li>
-                                <li><strong>Sức mạnh của kỷ luật:</strong> Một cây thư mục ngăn nắp, một bộ quy tắc ứng xử minh bạch chính là bệ phóng giúp việc tự học ngoại ngữ trở nên hiệu quả vượt bậc.</li>
-                                <li><strong>Tư duy phản biện là mỏ neo:</strong> Giữa kỷ nguyên số, khả năng hoài nghi khoa học và tự kiểm chứng tri thức mới chính là năng lực cốt lõi phân định giá trị cá nhân.</li>
+                                <li><strong>Con người là gốc rễ:</strong> Công nghệ là trợ lý đắc lực giải phóng kỹ thuật, nhưng con người mới là tổng đạo diễn thổi hồn vào tác phẩm.</li>
+                                <li><strong>Vệ sinh không gian số:</strong> Một cây thư mục tệp tin khoa học chính là nền tảng khởi đầu cho một tư duy nghiên cứu mạch lạc.</li>
+                                <li><strong>Kiên định sự liêm chính:</strong> Sử dụng công nghệ thông minh, có trách nhiệm đạo đức giúp chúng ta nâng tầm năng lực tự thân thay vì trở nên lười biếng.</li>
                             </ul>
                         </div>
                     </div>
@@ -1614,62 +1824,62 @@
         // Task 1 Stepper Steps Data
         const task1Steps = [
             {
-                title: "Khởi động File Explorer",
+                title: "1. Khởi động File Explorer",
                 desc: "Phương Linh nhấn tổ hợp phím tắt nhanh hoặc tương tác nhấp chọn trực quan biểu tượng thư mục màu vàng ngay trên thanh tác vụ chính của màn hình Windows.",
-                mockup: "Phím tắt: [Windows + E] -> Khởi chạy nhanh cửa sổ Explorer"
+                mockup: "Phím tắt: [Windows + E] -> Khởi chạy cửa sổ Explorer"
             },
             {
-                title: "Lựa chọn phân vùng lưu trữ",
+                title: "2. Lựa chọn phân vùng lưu trữ",
                 desc: "Từ thanh điều hướng bên trái màn hình, nhấn vào 'This PC'. Quan sát và nhấp đúp vào ổ đĩa không chứa hệ điều hành hệ thống (ổ D hoặc E). Trong điều kiện máy tính chỉ hiển thị ổ C, hãy chủ động điều hướng vào thư mục 'Documents'.",
                 mockup: "Đường dẫn thực hiện: This PC -> New Volume (E:)"
             },
             {
-                title: "Kiến tạo thư mục dự án cha",
+                title: "3. Kiến tạo thư mục dự án cha",
                 desc: "Tìm và nhấp chuột phải tại một vùng trống bất kỳ trên giao diện -> Chọn lệnh 'New' -> Nhấp chuột vào 'Folder'. Thực hiện việc gõ tên chuẩn theo cấu trúc quy định nộp bài.",
                 mockup: "Tên thư mục dự án: ThucHanh_NguyenPhuongLinh"
             },
             {
-                title: "Truy cập không gian dự án mới",
+                title: "4. Truy cập không gian dự án mới",
                 desc: "Tìm thư mục cha vừa khởi tạo trên giao diện thư mục và nhấp đúp chuột trái để truy cập vào sâu bên trong thư mục rỗng.",
                 mockup: "Đường dẫn hiển thị hiện tại: E:\\ThucHanh_NguyenPhuongLinh\\"
             },
             {
-                title: "Khởi tạo tệp tin ghi chú ban đầu",
+                title: "5. Khởi tạo tệp tin ghi chú ban đầu",
                 desc: "Nhấp chuột phải tại vùng trống bên trong thư mục rỗng này -> Chọn lệnh 'New' -> Nhấp chọn định dạng 'Text Document'. Gõ tên tệp tin văn bản mong muốn.",
                 mockup: "Tạo tệp: GhiChu.txt"
             },
             {
-                title: "Thao tác đổi tên tệp tin hệ thống",
+                title: "6. Thao tác đổi tên tệp tin hệ thống",
                 desc: "Nhấp chuột phải vào tệp tin 'GhiChu.txt' vừa tạo -> Lựa chọn lệnh 'Rename' trên thanh danh mục đổ xuống (hoặc phím tắt F2). Tiến hành thay đổi tên tệp tin để phục vụ lưu trữ lâu dài.",
                 mockup: "Tên tệp tin mới: GhiChuQuanTrong.txt"
             },
             {
-                title: "Xây dựng cấu trúc thư mục con",
+                title: "7. Xây dựng cấu trúc thư mục con",
                 desc: "Để phục vụ lưu trữ phân loại chuyên sâu, tiếp tục nhấp chuột phải tại vùng trống -> Chọn lệnh 'New' -> 'Folder'. Tiến hành gõ tên thư mục con.",
                 mockup: "Thư mục con mới tạo: TaiLieu"
             },
             {
-                title: "Quy trình Sao chép & Dán (Copy & Paste)",
+                title: "8. Quy trình Sao chép & Dán (Copy & Paste)",
                 desc: "Nhấp chuột phải vào tệp tin gốc 'GhiChuQuanTrong.txt' -> Chọn lệnh 'Copy' (hoặc nhấn tổ hợp phím tắt nhanh Ctrl + C). Sau đó truy cập vào sâu bên trong thư mục con 'TaiLieu', nhấp chuột phải tại vùng trống -> Chọn 'Paste' (Ctrl + V).",
                 mockup: "Hoàn tất sao chép: Tạo thêm bản sao GhiChuQuanTrong.txt trong thư mục TaiLieu"
             },
             {
-                title: "Quy trình Di chuyển tệp tin (Cut & Paste)",
+                title: "9. Quy trình Di chuyển tệp tin (Cut & Paste)",
                 desc: "Quay trở ra thư mục cha bên ngoài, nhấp chuột phải tạo tệp tin văn bản mới mang tên 'DiChuyen.txt'. Tiếp tục nhấp chuột phải vào tệp này -> Chọn lệnh 'Cut' (Ctrl + X). Truy cập tiếp vào thư mục con 'TaiLieu', nhấp chuột phải tại vùng trống -> Chọn 'Paste' (Ctrl + V).",
                 mockup: "Hoàn tất di chuyển: Tệp gốc biến mất tại vị trí cũ và xuất hiện tại TaiLieu"
             },
             {
-                title: "Thao tác xóa tệp tin thông thường",
+                title: "10. Thao tác xóa tệp tin thông thường",
                 desc: "Nhấp chuột phải vào bản sao tệp tin 'GhiChuQuanTrong.txt' nằm bên trong thư mục con 'TaiLieu' -> Nhấp chọn lệnh 'Delete'.",
                 mockup: "Trạng thái: Bản sao tệp tin tạm thời biến mất và được lưu giữ trong Recycle Bin"
             },
             {
-                title: "Thao tác xóa vĩnh viễn tệp tin",
+                title: "11. Thao tác xóa vĩnh viễn tệp tin",
                 desc: "Để dọn dẹp hệ thống tối ưu, nhấp chuột trái chọn tệp tin 'DiChuyen.txt' -> Giữ tổ hợp phím 'Shift + Delete'. Chọn đồng ý 'Yes' trên cửa sổ cảnh báo hệ thống vừa hiển thị.",
                 mockup: "Trạng thái: Tệp tin biến mất hoàn toàn khỏi ổ đĩa lưu trữ, không qua thùng rác"
             },
             {
-                title: "Khôi phục dữ liệu từ Thùng rác",
+                title: "12. Khôi phục dữ liệu từ Thùng rác",
                 desc: "Trở về màn hình Desktop của Windows -> Nhấp đúp biểu tượng 'Recycle Bin' để truy cập. Tìm tệp tin 'GhiChuQuanTrong.txt' đã xóa ở Bước 10 -> Nhấp chuột phải -> Chọn 'Restore'. Tệp lập tức quay lại thư mục con 'TaiLieu'.",
                 mockup: "Khôi phục thành công: Thư mục TaiLieu khôi phục trạng thái chứa GhiChuQuanTrong.txt"
             }
@@ -1700,27 +1910,27 @@
                     level: "Basic (Prompt cơ bản)",
                     prompt: '"Hãy tóm tắt về lợi ích của việc học ngoại ngữ"',
                     pros: [
-                        "Nhanh, cực kỳ ngắn gọn, dễ gõ để sử dụng.",
-                        "Định hình được rõ ràng từ khóa chính: lợi ích học ngoại ngữ.",
-                        "Chưa quy định chi tiết cấu trúc đầu ra, dễ dẫn đến kết quả trả về lan man hoặc trình bày thiếu logic khoa học."
+                        "Dễ dàng khởi tạo nhanh chóng, dễ dàng hiểu từ khóa chủ đạo.",
+                        "Kết quả trả về thường mang tính rập khuôn, các ý bị dàn trải, chưa định rõ trọng tâm phát triển.",
+                        "Trình bày lộn xộn, thiếu cấu trúc gạch đầu dòng khoa học."
                     ]
                 },
                 {
                     level: "Improved (Prompt cải tiến)",
                     prompt: '"Hãy tóm tắt tài liệu này về lợi ích của việc học ngoại ngữ thành 5 ý chính theo dạng gạch đầu dòng. Nội dung cần ngắn gọn, dễ hiểu và tập trung vào các lợi ích nổi bật trong học tập, công việc, giao tiếp và phát triển bản thân. Cuối cùng, hãy đưa ra kết luận ngắn về tầm quan trọng của việc học ngoại ngữ."',
                     pros: [
-                        "Ràng buộc rõ ràng số lượng (5 ý) giúp câu trả lời súc tích.",
-                        "Định hướng phân nhóm cấu trúc (học tập, công việc, giao tiếp, bản thân) để câu trả lời phong phú góc nhìn.",
-                        "Có yêu cầu kết luận để tạo lập kết cấu báo cáo hoàn chỉnh."
+                        "Giới hạn định lượng đầu ra (5 ý) giúp câu trả lời súc tích, tránh lan man.",
+                        "Phân loại vùng thông tin (giao tiếp, học tập, công việc) giúp báo cáo đa dạng góc nhìn.",
+                        "Yêu cầu bổ sung kết luận giúp bài viết tóm tắt có cấu trúc hoàn chỉnh."
                     ]
                 },
                 {
                     level: "Advanced (Prompt nâng cao)",
                     prompt: '"Hãy đóng vai giám đốc điều hành của một công ty đa quốc gia với nhiều năm kinh nghiệm làm việc cùng đối tác quốc tế. Dựa trên góc nhìn của một nhà lãnh đạo doanh nghiệp toàn cầu, hãy viết 1 bài viết truyền cảm hứng khoảng 500 chữ có đủ mở, thân, kết về lợi ích của việc học ngoại ngữ. Lưu ý viết logic, suy nghĩ kĩ, câu từ trau chuốt."',
                     pros: [
-                        "Sử dụng kỹ thuật đóng vai (Role-playing) giúp định vị giọng điệu thuyết phục, chuyên nghiệp.",
-                        "Thiết lập bối cảnh giả lập thực tế cao để AI liên hệ trực tiếp với môi trường kinh doanh quốc tế thực thụ.",
-                        "Kết quả phản hồi có chiều sâu, lập luận chặt chẽ và truyền cảm hứng rõ rệt."
+                        "Kỹ thuật đóng vai (Role-playing) tạo nên một phong cách nói chuyện uyển chuyển, thuyết phục mang tầm vóc lãnh đạo.",
+                        "Đặt bối cảnh kinh tế toàn cầu hóa giúp AI liên kết chặt chẽ lợi ích ngoại ngữ với cơ hội thăng tiến nghề nghiệp thực tế.",
+                        "Đầu ra có văn phong truyền cảm hứng cao độ, câu chữ trau chuốt."
                     ]
                 }
             ],
@@ -1729,25 +1939,25 @@
                     level: "Basic (Prompt cơ bản)",
                     prompt: '"Hãy giải thích khái niệm Tâm lí học hành vi"',
                     pros: [
-                        "Thích hợp cho người mới bắt đầu tiếp xúc nghiên cứu.",
-                        "Câu trả lời thu về thường mang tính khái quát lý thuyết chung chung, thiếu đi chiều sâu ứng dụng thực tiễn."
+                        "Dễ dùng cho người mới bắt đầu.",
+                        "Câu trả lời mang tính sao chép định nghĩa thuần túy, khô khan, cực kỳ khó tiếp cận đối với người ngoài ngành."
                     ]
                 },
                 {
                     level: "Improved (Prompt cải tiến)",
                     prompt: '"Hãy giải thích khái niệm Tâm lí học hành vi bằng ngôn ngữ đơn giản, dễ hiểu và đưa ra 2 ví dụ thực tế trong cuộc sống hằng ngày. Đồng thời, trình bày cách tâm lí học hành vi ảnh hưởng đến suy nghĩ và hành động của con người."',
                     pros: [
-                        "Yêu cầu diễn giải bằng ngôn từ đơn giản hóa giúp tránh xa các thuật ngữ học thuật khô khan.",
-                        "Buộc AI đưa ra 2 ví dụ minh họa trực quan giúp hiểu sâu bản chất khái niệm tâm lý."
+                        "Ép buộc AI sử dụng từ vựng dễ hiểu, loại bỏ các thuật ngữ mang tính bác học gây khó tiếp thu.",
+                        "Yêu cầu 2 ví dụ cụ thể giúp người đọc liên hệ trực tiếp với đời sống và ghi nhớ sâu sắc khái niệm."
                     ]
                 },
                 {
                     level: "Advanced (Prompt nâng cao)",
                     prompt: '"Hãy đóng vai một nhà tâm lý học có nhiều năm kinh nghiệm nghiên cứu hành vi con người và giải thích khái niệm Tâm lí học hành vi theo cách dễ hiểu nhưng mang tính học thuật. \nYêu cầu:\n- Giải thích khái niệm cốt lõi của tâm lí học hành vi.\n- Phân tích cách môi trường và trải nghiệm ảnh hưởng đến hành vi con người.\n- Đưa ra ví dụ thực tế trong học tập, công việc và mạng xã hội.\n- So sánh hành vi tích cực và tiêu cực dưới góc nhìn tâm lí học hành vi.\n- Kết luận về tầm quan trọng của việc hiểu tâm lí học hành vi trong cuộc sống hiện đại.\nLưu ý: Trình bày rõ ràng theo từng ý và sử dụng ngôn ngữ dễ hiểu, logic."',
                     pros: [
-                        "Đóng vai giáo sư có chuyên môn sâu giúp định vị hệ thống thuật ngữ chuẩn xác.",
-                        "Cấu trúc yêu cầu vô cùng đa dạng, đào sâu cả nguyên nhân, tác động xã hội và so sánh đối chiếu.",
-                        "Kiểm soát cấu trúc trình bày chặt chẽ, mạch lạc."
+                        "Vai diễn chuyên sâu của nhà khoa học mang lại các định nghĩa chuẩn mực.",
+                        "Sử dụng kỹ thuật chia nhỏ yêu cầu buộc AI phân tích đa góc nhìn: từ nguồn gốc môi trường đến so sánh hành vi tích cực/tiêu cực.",
+                        "Hệ thống phân chia rõ ràng giúp thu về một báo cáo nghiên cứu hoàn hảo."
                     ]
                 }
             ],
@@ -1756,24 +1966,24 @@
                     level: "Basic (Prompt cơ bản)",
                     prompt: '"Hãy tạo bộ câu hỏi ôn tập về chủ đề Tâm lí học hành vi với 10 câu hỏi ngắn giúp người học ghi nhớ kiến thức cơ bản."',
                     pros: [
-                        "AI dễ dàng phản hồi chuẩn xác do có giới hạn số lượng câu hỏi.",
-                        "Các câu hỏi thu về thường sơ sài, thiếu đáp án tham chiếu hoặc không phân chia mức độ khó dễ rõ ràng."
+                        "Có giới hạn số lượng giúp kiểm soát độ dài câu trả lời.",
+                        "Câu hỏi thường nông cạn, không kèm đáp án đối chiếu để người dùng tự chấm điểm năng lực học."
                     ]
                 },
                 {
                     level: "Improved (Prompt cải tiến)",
                     prompt: '"Hãy tạo bộ câu hỏi ôn tập về chủ đề Tâm lí học hành vi gồm 10 câu hỏi ngắn theo mức độ từ dễ đến trung bình. Nội dung cần bao quát khái niệm, đặc điểm, ví dụ thực tế và ảnh hưởng của hành vi con người trong cuộc sống. Mỗi câu hỏi hãy kèm đáp án ngắn gọn để hỗ trợ việc tự ôn tập."',
                     pros: [
-                        "Yêu cầu có đáp án đi kèm hỗ trợ đắc lực cho hoạt động tự đánh giá năng lực.",
-                        "Bao quát đầy đủ cả lý thuyết và thực tiễn đời sống xã hội."
+                        "Đáp án ngắn đi kèm tạo điều kiện tốt nhất cho quá trình tự học.",
+                        "Phạm vi kiến thức trải rộng từ định nghĩa lý thuyết đến ứng dụng thực tiễn."
                     ]
                 },
                 {
                     level: "Advanced (Prompt nâng cao)",
                     prompt: '"Hãy đóng vai một giảng viên tâm lí học và tạo bộ câu hỏi ôn tập chuyên sâu về Tâm lí học hành vi. \nYêu cầu:\n- Bao gồm câu hỏi dễ, trung bình và nâng cao.\n- Có cả trắc nghiệm và tự luận.\n- Mỗi câu hỏi cần kèm đáp án ngắn gọn.\n- Nội dung tập trung vào khái niệm, ứng dụng thực tế và phân tích hành vi con người trong cuộc sống hiện đại."',
                     pros: [
-                        "Cơ cấu bài thi chuẩn sư phạm nhờ sự phân hóa các mức độ nhận biết và định dạng câu hỏi (trắc nghiệm + tự luận).",
-                        "Kích thích người học phát triển khả năng lập luận, phản biện sâu sắc ở các câu hỏi tự luận nâng cao."
+                        "Phân loại mức độ câu hỏi rõ ràng (Dễ, Trung bình, Khó) kích thích tư duy phát triển.",
+                        "Sự phối hợp giữa câu hỏi trắc nghiệm khách quan và tự luận mở giúp kiểm tra toàn diện cả lý thuyết lẫn khả năng lập luận của học viên."
                     ]
                 }
             ]
