@@ -4,24 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nguyễn Phương Linh | Digital Portfolio</title>
-    <!-- Google Fonts hỗ trợ tiếng Việt tuyệt hảo -->
+    <!-- Google Fonts hỗ trợ tiếng Việt hoàn hảo -->
     <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root {
-            --bg-color: #0b1120;
-            --primary-glow: rgba(131, 165, 255, 0.12);
+            --bg-color: #0f172a;
+            --primary-glow: rgba(165, 180, 252, 0.25);
             --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --accent: #cbd5e1;
-            --cosmic-purple: #c084fc;
-            --cosmic-blue: #818cf8;
-            --accent-glow: rgba(129, 140, 248, 0.3);
-            --card-bg: rgba(15, 23, 42, 0.6);
-            --card-border: rgba(255, 255, 255, 0.06);
-            --glass-blur: blur(20px);
+            --text-muted: #cbd5e1; /* Sáng hơn màu cũ */
+            --accent: #f1f5f9;
+            --cosmic-purple: #d8b4fe; /* Tươi sáng hơn */
+            --cosmic-blue: #a5b4fc; /* Tươi sáng hơn */
+            --accent-glow: rgba(165, 180, 252, 0.45);
+            --card-bg: rgba(30, 41, 59, 0.55); /* Lớp nền sáng hơn */
+            --card-border: rgba(255, 255, 255, 0.15); /* Viền rõ nét hơn */
+            --glass-blur: blur(24px);
         }
 
         * {
@@ -32,7 +32,8 @@
         }
 
         body {
-            background-image: linear-gradient(rgba(11, 17, 32, 0.92), rgba(11, 17, 32, 0.92)), url('back.jpg');
+            /* Giảm độ tối lớp phủ xuống 65% để làm lộ dải màu sáng của back.jpg */
+            background-image: linear-gradient(rgba(15, 23, 42, 0.65), rgba(20, 27, 45, 0.65)), url('back.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -40,6 +41,38 @@
             font-family: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             overflow-x: hidden;
             line-height: 1.8;
+        }
+
+        /* Ambient Glowing Nebulae */
+        .nebula {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.22;
+            pointer-events: none;
+            z-index: -2;
+            animation: pulseNebula 8s infinite alternate ease-in-out;
+        }
+
+        .nebula-1 {
+            top: 15%;
+            left: 10%;
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, var(--cosmic-purple) 0%, transparent 70%);
+        }
+
+        .nebula-2 {
+            bottom: 20%;
+            right: 10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--cosmic-blue) 0%, transparent 70%);
+        }
+
+        @keyframes pulseNebula {
+            0% { transform: scale(1) translate(0, 0); opacity: 0.18; }
+            100% { transform: scale(1.15) translate(20px, -20px); opacity: 0.28; }
         }
 
         /* Animated Starfield */
@@ -61,11 +94,11 @@
             background: var(--bg-color);
         }
         ::-webkit-scrollbar-thumb {
-            background: rgba(129, 140, 248, 0.25);
+            background: rgba(165, 180, 252, 0.35);
             border-radius: 3px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: rgba(129, 140, 248, 0.5);
+            background: rgba(165, 180, 252, 0.6);
         }
 
         /* Layout Container */
@@ -82,7 +115,7 @@
             left: 0;
             width: 100%;
             z-index: 1000;
-            background: rgba(11, 17, 32, 0.7);
+            background: rgba(15, 23, 42, 0.6);
             backdrop-filter: var(--glass-blur);
             -webkit-backdrop-filter: var(--glass-blur);
             border-bottom: 1px solid var(--card-border);
@@ -110,7 +143,7 @@
 
         .logo i {
             color: var(--cosmic-blue);
-            text-shadow: 0 0 10px var(--cosmic-blue);
+            text-shadow: 0 0 15px var(--cosmic-blue);
             animation: pulse 2.5s infinite alternate;
         }
 
@@ -149,8 +182,8 @@
         }
 
         .btn-drive {
-            background: linear-gradient(135deg, rgba(129, 140, 248, 0.15), rgba(192, 132, 252, 0.15));
-            border: 1px solid rgba(129, 140, 248, 0.3);
+            background: linear-gradient(135deg, rgba(165, 180, 252, 0.25), rgba(216, 180, 254, 0.25));
+            border: 1px solid rgba(165, 180, 252, 0.4);
             padding: 0.65rem 1.4rem;
             border-radius: 50px;
             color: #fff;
@@ -160,14 +193,14 @@
             align-items: center;
             gap: 8px;
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 0 4px 15px rgba(129, 140, 248, 0.1);
+            box-shadow: 0 4px 15px rgba(165, 180, 252, 0.15);
         }
 
         .btn-drive:hover {
             background: linear-gradient(135deg, var(--cosmic-blue), var(--cosmic-purple));
             border-color: transparent;
             color: var(--bg-color);
-            box-shadow: 0 8px 25px rgba(129, 140, 248, 0.3);
+            box-shadow: 0 8px 25px rgba(165, 180, 252, 0.4);
             transform: translateY(-2px);
         }
 
@@ -208,7 +241,7 @@
             border-radius: 50%;
             padding: 6px;
             background: linear-gradient(135deg, var(--cosmic-blue), var(--cosmic-purple), transparent);
-            box-shadow: 0 10px 40px rgba(129, 140, 248, 0.15);
+            box-shadow: 0 10px 40px rgba(165, 180, 252, 0.3);
             animation: float 6s ease-in-out infinite;
         }
 
@@ -217,7 +250,7 @@
             height: 100%;
             border-radius: 50%;
             object-fit: cover;
-            border: 4px solid #0f172a;
+            border: 4px solid #1e293b;
         }
 
         .hero-info {
@@ -228,15 +261,16 @@
 
         .badge {
             align-self: flex-start;
-            background: rgba(129, 140, 248, 0.1);
-            border: 1px solid rgba(129, 140, 248, 0.2);
+            background: rgba(165, 180, 252, 0.2);
+            border: 1px solid rgba(165, 180, 252, 0.35);
             padding: 0.4rem 1.1rem;
             border-radius: 50px;
             font-size: 0.8rem;
             font-weight: 600;
-            color: var(--cosmic-blue);
+            color: #fff;
             letter-spacing: 1.5px;
             text-transform: uppercase;
+            box-shadow: 0 0 12px rgba(165, 180, 252, 0.2);
         }
 
         .hero-info h1 {
@@ -247,6 +281,7 @@
             background: linear-gradient(135deg, #ffffff 40%, var(--cosmic-blue) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(255,255,255,0.1);
         }
 
         .hero-desc {
@@ -287,7 +322,7 @@
         /* Portfolio Goals Section */
         .goals-section {
             padding: 6rem 0;
-            background: linear-gradient(180deg, transparent, rgba(15, 23, 42, 0.4), transparent);
+            background: linear-gradient(180deg, transparent, rgba(30, 41, 59, 0.3), transparent);
         }
 
         .goals-grid {
@@ -309,13 +344,14 @@
 
         .goal-card:hover {
             transform: translateY(-5px);
-            border-color: rgba(129, 140, 248, 0.2);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            border-color: rgba(165, 180, 252, 0.35);
+            box-shadow: 0 15px 35px rgba(165, 180, 252, 0.15);
         }
 
         .goal-icon {
-            font-size: 2rem;
-            color: var(--cosmic-blue);
+            font-size: 2.2rem;
+            color: var(--cosmic-purple);
+            text-shadow: 0 0 10px var(--cosmic-purple);
             margin-bottom: 1.5rem;
         }
 
@@ -358,8 +394,9 @@
             display: block;
             margin: 1.2rem auto 0 auto;
             color: var(--cosmic-purple);
-            font-size: 1rem;
-            opacity: 0.6;
+            font-size: 1.2rem;
+            opacity: 0.8;
+            text-shadow: 0 0 10px var(--cosmic-purple);
         }
 
         /* Projects Section */
@@ -368,7 +405,7 @@
         }
 
         .drive-callout {
-            background: rgba(20, 27, 45, 0.4);
+            background: rgba(30, 41, 59, 0.4);
             border: 1px solid var(--card-border);
             backdrop-filter: var(--glass-blur);
             -webkit-backdrop-filter: var(--glass-blur);
@@ -378,6 +415,7 @@
             margin-bottom: 5rem;
             position: relative;
             overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
         }
 
         .drive-callout h3 {
@@ -407,6 +445,7 @@
             backdrop-filter: var(--glass-blur);
             -webkit-backdrop-filter: var(--glass-blur);
             position: relative;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
         }
 
         .task-header-meta {
@@ -425,20 +464,22 @@
         }
 
         .task-title-group .task-badge {
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             color: var(--cosmic-blue);
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             margin-bottom: 0.5rem;
             display: block;
+            font-weight: 600;
         }
 
         .task-number {
             font-family: 'Playfair Display', serif;
-            font-size: 4rem;
+            font-size: 4.5rem;
             font-weight: 700;
-            color: rgba(129, 140, 248, 0.08);
+            color: rgba(255, 255, 255, 0.08);
             line-height: 1;
+            text-shadow: 0 0 15px rgba(255,255,255,0.05);
         }
 
         .task-grid-summary {
@@ -454,6 +495,7 @@
             text-transform: uppercase;
             letter-spacing: 0.5px;
             margin-bottom: 0.8rem;
+            font-weight: 600;
         }
 
         .summary-column p {
@@ -471,7 +513,7 @@
         }
 
         .file-tree-card {
-            background: rgba(11, 17, 32, 0.6);
+            background: rgba(30, 41, 59, 0.5);
             border: 1px solid var(--card-border);
             border-radius: 20px;
             padding: 2rem;
@@ -504,7 +546,7 @@
         }
 
         .tree-folder {
-            color: #f59e0b;
+            color: #fbbf24; /* Vàng rực rỡ hơn */
         }
 
         .tree-file {
@@ -518,11 +560,11 @@
             top: 0;
             bottom: 10px;
             width: 1px;
-            border-left: 1px dashed rgba(255, 255, 255, 0.15);
+            border-left: 1px dashed rgba(255, 255, 255, 0.25);
         }
 
         .stepper-container {
-            background: rgba(11, 17, 32, 0.5);
+            background: rgba(30, 41, 59, 0.45);
             border: 1px solid var(--card-border);
             border-radius: 20px;
             padding: 2.5rem;
@@ -540,7 +582,7 @@
 
         .step-indicator {
             font-size: 0.9rem;
-            color: var(--cosmic-blue);
+            color: var(--cosmic-purple);
             font-weight: 600;
         }
 
@@ -573,7 +615,7 @@
         }
 
         .btn-step {
-            background: rgba(255,255,255,0.05);
+            background: rgba(255,255,255,0.08);
             border: 1px solid var(--card-border);
             color: #fff;
             padding: 0.5rem 1.2rem;
@@ -585,6 +627,7 @@
         .btn-step:hover:not(:disabled) {
             background: var(--cosmic-blue);
             color: var(--bg-color);
+            box-shadow: 0 0 15px rgba(165, 180, 252, 0.4);
         }
 
         .btn-step:disabled {
@@ -597,7 +640,7 @@
             overflow-x: auto;
             border-radius: 16px;
             border: 1px solid var(--card-border);
-            background: rgba(11, 17, 32, 0.4);
+            background: rgba(30, 41, 59, 0.4);
             margin-top: 2rem;
         }
 
@@ -609,7 +652,7 @@
         }
 
         th {
-            background: rgba(15, 23, 42, 0.8);
+            background: rgba(15, 23, 42, 0.7);
             padding: 1.2rem 1.5rem;
             color: var(--cosmic-blue);
             font-weight: 600;
@@ -626,18 +669,18 @@
         }
 
         tr:hover td {
-            background: rgba(255,255,255,0.01);
+            background: rgba(255,255,255,0.03);
             color: #fff;
         }
 
         .td-summary {
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             max-width: 250px;
-            line-height: 1.5;
+            line-height: 1.6;
         }
 
         .rating-star {
-            color: #f59e0b;
+            color: #fbbf24;
         }
 
         .btn-table-link {
@@ -645,6 +688,7 @@
             text-decoration: none;
             word-break: break-all;
             font-size: 0.8rem;
+            font-weight: 500;
         }
 
         .btn-table-link:hover {
@@ -686,7 +730,7 @@
         }
 
         .compare-card {
-            background: rgba(11, 17, 32, 0.5);
+            background: rgba(30, 41, 59, 0.5);
             border: 1px solid var(--card-border);
             border-radius: 16px;
             padding: 1.5rem;
@@ -696,8 +740,8 @@
         }
 
         .compare-card.advanced {
-            border-color: rgba(192, 132, 252, 0.3);
-            background: rgba(192, 132, 252, 0.02);
+            border-color: rgba(192, 132, 252, 0.45);
+            background: rgba(192, 132, 252, 0.04);
         }
 
         .compare-card h6 {
@@ -710,7 +754,7 @@
             gap: 8px;
         }
 
-        .compare-card.basic h6 { color: #94a3b8; }
+        .compare-card.basic h6 { color: #cbd5e1; }
         .compare-card.improved h6 { color: var(--cosmic-blue); }
         .compare-card.advanced h6 { color: var(--cosmic-purple); }
 
@@ -763,7 +807,7 @@
         }
 
         .tool-node {
-            background: rgba(11, 17, 32, 0.5);
+            background: rgba(30, 41, 59, 0.5);
             border: 1px solid var(--card-border);
             border-radius: 20px;
             padding: 1.8rem;
@@ -774,8 +818,9 @@
         }
 
         .tool-node:hover {
-            border-color: rgba(129, 140, 248, 0.2);
+            border-color: rgba(165, 180, 252, 0.35);
             transform: translateX(5px);
+            box-shadow: 0 4px 20px rgba(165, 180, 252, 0.1);
         }
 
         .tool-node i {
@@ -796,7 +841,7 @@
         }
 
         .collaboration-details {
-            background: rgba(15, 23, 42, 0.4);
+            background: rgba(30, 41, 59, 0.4);
             border: 1px solid var(--card-border);
             border-radius: 20px;
             padding: 2rem;
@@ -808,6 +853,7 @@
             margin-bottom: 1rem;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            font-weight: 600;
         }
 
         .collab-table {
@@ -823,7 +869,7 @@
 
         .collab-table td {
             padding: 0.8rem 0.6rem;
-            border-bottom: 1px dashed rgba(255,255,255,0.05);
+            border-bottom: 1px dashed rgba(255,255,255,0.08);
         }
 
         /* Task 5 Timeline & Detail Workflow */
@@ -836,7 +882,7 @@
         }
 
         .pipeline-card {
-            background: rgba(11, 17, 32, 0.5);
+            background: rgba(30, 41, 59, 0.5);
             border: 1px solid var(--card-border);
             border-radius: 16px;
             padding: 1.5rem;
@@ -844,8 +890,8 @@
         }
 
         .pipeline-card.human {
-            border-color: rgba(192, 132, 252, 0.3);
-            background: rgba(192, 132, 252, 0.03);
+            border-color: rgba(192, 132, 252, 0.45);
+            background: rgba(192, 132, 252, 0.05);
         }
 
         .pipeline-card h5 {
@@ -864,7 +910,7 @@
         }
 
         .deep-case-study {
-            background: rgba(11, 17, 32, 0.4);
+            background: rgba(30, 41, 59, 0.4);
             border: 1px solid var(--card-border);
             border-radius: 20px;
             padding: 2.5rem;
@@ -891,6 +937,7 @@
             font-size: 1rem;
             color: var(--cosmic-blue);
             margin-bottom: 0.8rem;
+            font-weight: 600;
         }
 
         .study-box p {
@@ -909,7 +956,7 @@
         }
 
         .principle-item {
-            background: rgba(11, 17, 32, 0.5);
+            background: rgba(30, 41, 59, 0.5);
             border: 1px solid var(--card-border);
             border-radius: 16px;
             padding: 1.5rem;
@@ -929,6 +976,7 @@
             font-size: 1rem;
             margin-bottom: 0.4rem;
             color: #fff;
+            font-weight: 600;
         }
 
         .principle-body p {
@@ -965,7 +1013,7 @@
         }
 
         .reflection-card {
-            background: rgba(11, 17, 32, 0.4);
+            background: rgba(30, 41, 59, 0.45);
             border: 1px solid var(--card-border);
             border-radius: 20px;
             padding: 2rem;
@@ -980,6 +1028,7 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            font-weight: 600;
         }
 
         .reflection-card ul {
@@ -1005,7 +1054,7 @@
 
         /* Footer */
         footer {
-            background: rgba(11, 17, 32, 0.95);
+            background: rgba(15, 23, 42, 0.95);
             border-top: 1px solid var(--card-border);
             padding: 4rem 0;
             text-align: center;
@@ -1117,7 +1166,7 @@
                 top: 100%;
                 left: 0;
                 width: 100%;
-                background: rgba(11, 17, 32, 0.95);
+                background: rgba(15, 23, 42, 0.95);
                 backdrop-filter: var(--glass-blur);
                 border-bottom: 1px solid var(--card-border);
                 padding: 2rem;
@@ -1132,6 +1181,8 @@
 </head>
 <body>
 
+    <div class="nebula nebula-1"></div>
+    <div class="nebula nebula-2"></div>
     <canvas id="starfield"></canvas>
 
     <!-- Header Navigation -->
@@ -1355,7 +1406,7 @@
                                 </tr>
                                 <tr>
                                     <td>5</td>
-                                    <td>UEH AI trong giáo dục đại học</td>
+                                    <td>Tác động AI giáo dục đại học (UEH)</td>
                                     <td>UEH</td>
                                     <td>Phân tích học thuật</td>
                                     <td class="td-summary">Đánh giá tác động của các chatbot AI đối với năng lực tư duy phản biện và khả năng viết học thuật của sinh viên đại học.<br><a class="btn-table-link" href="https://www.asian-efl-journal.com" target="_blank">Xem nguồn</a></td>
@@ -1538,7 +1589,7 @@
                         </div>
                     </div>
 
-                    <!-- Task 5 Pipeline Flow & Double Case Study -->
+                    <!-- Task 5 Timeline & Detail Workflow -->
                     <div class="pipeline-flow">
                         <div class="pipeline-card">
                             <h5>Giai đoạn 1: Văn bản</h5>
@@ -1603,7 +1654,7 @@
                     </div>
 
                     <!-- Task 6 Golden Rules Checklist -->
-                    <h5 style="font-size: 1.1rem; color: #fff; margin-bottom: 1rem;"><i class="fa-solid fa-shield-halved" style="color: var(--cosmic-blue); margin-right: 8px;"></i> Bộ nguyên tắc ứng xử học thuật số của Phương Linh</h5>
+                    <h5 style="font-size: 1.1rem; color: #fff; margin-bottom: 1rem;"><i class="fa-solid fa-scale-balanced" style="color: var(--cosmic-blue); margin-right: 8px;"></i> Bộ nguyên tắc ứng xử học thuật số của Phương Linh</h5>
                     <div class="principles-grid">
                         <div class="principle-item">
                             <span class="principle-num">01</span>
@@ -1767,10 +1818,10 @@
             
             if (window.scrollY > 60) {
                 header.style.padding = '0.6rem 0';
-                header.style.background = 'rgba(11, 17, 32, 0.9)';
+                header.style.background = 'rgba(15, 23, 42, 0.9)';
             } else {
                 header.style.padding = '1.2rem 0';
-                header.style.background = 'rgba(11, 17, 32, 0.7)';
+                header.style.background = 'rgba(15, 23, 42, 0.7)';
             }
 
             if (window.scrollY > 400) {
@@ -1974,7 +2025,7 @@
                     level: "Improved (Prompt cải tiến)",
                     prompt: '"Hãy tạo bộ câu hỏi ôn tập về chủ đề Tâm lí học hành vi gồm 10 câu hỏi ngắn theo mức độ từ dễ đến trung bình. Nội dung cần bao quát khái niệm, đặc điểm, ví dụ thực tế và ảnh hưởng của hành vi con người trong cuộc sống. Mỗi câu hỏi hãy kèm đáp án ngắn gọn để hỗ trợ việc tự ôn tập."',
                     pros: [
-                        "Đáp án ngắn đi kèm tạo điều kiện tốt nhất cho quá trình tự học.",
+                        "Yêu cầu có đáp án đi kèm hỗ trợ đắc lực cho hoạt động tự học.",
                         "Phạm vi kiến thức trải rộng từ định nghĩa lý thuyết đến ứng dụng thực tiễn."
                     ]
                 },
